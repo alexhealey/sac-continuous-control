@@ -45,7 +45,7 @@ Before running code in a notebook, change the kernel to match the drlnd environm
 
 ## Approach
 
-The implementation approach is based on Soft Actor Critic. For more details on this approach see the following article.
+The implementation approach is based on Soft Actor Critic. For more details on this approach see the following [article]( https://towardsdatascience.com/in-depth-review-of-soft-actor-critic-91448aba63d4).
 
 ## Running 
 
