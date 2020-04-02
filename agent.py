@@ -4,8 +4,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.distributions.normal import Normal
 import importlib
-import network
-importlib.reload(network)
+import model
+importlib.reload(model)
 import buffer
 importlib.reload(buffer)
 
@@ -61,7 +61,7 @@ class SACAgent:
         self.replay_buffer = buffer.SimpleBuffer(self.device, 0, hyperparams)
 
 
-    def train_episode(self, max_steps):
+    def learn_episode(self, max_steps):
         brain_name = self.env.brain_names[0]
         env_info = self.env.reset(train_mode=True)[brain_name]
         state = env_info.vector_observations[0]
