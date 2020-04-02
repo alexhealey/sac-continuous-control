@@ -7,7 +7,7 @@ class QNetwork(nn.Module):
     def __init__(self, state_size, action_size, hyperparams):
         super(QNetwork, self).__init__()
         layer1_size = hyperparams.get("q_fc1_units", 256)
-        layer2_size = hyperparams.get("q_fc2_units", 256)
+        layer2_size = hyperparams.get("q_fc1_units", 256)
         init_w = hyperparams.get("q_init_w", 3e-3)
         self.linear1 = nn.Linear(state_size + action_size, layer1_size)
         self.linear2 = nn.Linear(layer1_size, layer2_size)
@@ -33,7 +33,7 @@ class GaussianPolicyNetwork(nn.Module):
 
         self.linear1 = nn.Linear(state_size, layer1_size)
         self.linear2 = nn.Linear(layer1_size, layer2_size)
-3e-3
+
         # head for the mean
         self.mean_linear = nn.Linear(layer2_size, action_size)
         self.mean_linear.weight.data.uniform_(-init_w, init_w)
@@ -67,6 +67,6 @@ class GaussianPolicyNetwork(nn.Module):
         action = torch.tanh(z)
 
         # we modify the log_pi computation as explained in the Haarnoja et al. paper
-        log_pi = (normal.log_prob(z) - torch.log(1 - (torch.tanh(z)).pow(2) + epsilon)).sum(1, keepdim=True)
+        log_pi = (normal.log_prob(z) - torch.log(1 - (torch.tanh(z)).pow(2) + EPSILON)).sum(1, keepdim=True)
 
         return action, log_pi

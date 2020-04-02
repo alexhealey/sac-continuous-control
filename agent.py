@@ -12,9 +12,9 @@ importlib.reload(buffer)
 
 class SACAgent:
 
-    def __init__(self, env, hyperparams):
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    def __init__(self, device, env, hyperparams):
 
+        self.device = device
         self.env = env
         brain_name = env.brain_names[0]
         brain = env.brains[brain_name]
@@ -30,11 +30,11 @@ class SACAgent:
         self.delay_step = 2
 
         # initialize networks
-        self.q_net1 = network.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
-        self.q_net2 = network.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
-        self.target_q_net1 = network.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
-        self.target_q_net2 = network.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
-        self.policy_net = network. GaussianPolicyNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
+        self.q_net1 = model.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
+        self.q_net2 = model.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
+        self.target_q_net1 = model.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
+        self.target_q_net2 = model.QNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
+        self.policy_net = model. GaussianPolicyNetwork(self.state_size, self.action_size, hyperparams).to(self.device)
 
         # copy params to target param
         for target_param, param in zip(self.target_q_net1.parameters(), self.q_net1.parameters()):
