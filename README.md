@@ -43,6 +43,14 @@ Before running code in a notebook, change the kernel to match the drlnd environm
 
 ![Jupyter Kernel](jupyter_kernel.png)
 
+
+You will also need to download the environment file and unzip it in the project root directory. The environments are (by platform)
+
+* [Linux](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Linux.zip)
+* [Mac](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher.app.zip)
+* [Windows 32bit](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86.zip)
+* [Windows 64bit](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86_64.zip)
+
 ## Approach
 
 The implementation approach is based on Soft Actor Critic. For more details on this approach see the following [article]( https://towardsdatascience.com/in-depth-review-of-soft-actor-critic-91448aba63d4).
